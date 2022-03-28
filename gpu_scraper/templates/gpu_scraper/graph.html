@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Gpu price tracker among resellers sorted by chipset, manufacturer or by marketplaces.">
+        <title>GPU Price Evolution</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'gpu_scraper/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'gpu_scraper/styl.css' %}?{% now "U" %}">
+
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="title-page">
+                GPU Price Evolution
+            </div>
+            <div class="nav-social">
+                <a href="mailto:name@email.com" class="contact-me">Contactez-moi</a>
+            </div>
+    
+        </div>
+        <div class="body">
+            <div class="gpu-choices">
+                <form action="" method="get">
+                    <span>Sort by</span>
+                    <ul>
+                        <label>
+                            <li>
+                                <input type="radio" name="filter" value="chipset" {% if "chipset"  in GETlist.filter or not GETlist.filter %}checked{% endif %}>by Chipset
+                            </li>
+                        </label>
+                        <label>
+                            <li>
+                                <input type="radio" name="filter" value="mp_name" {% if "mp_name" in GETlist.filter %}checked{% endif %}>by Marketplace
+                            </li>
+                        </label>
+                        <label>
+                            <li>
+                                <input type="radio" name="filter" value="manufacturer" {% if "manufacturer" in GETlist.filter %}checked{% endif %}>by Manufacturer
+                            </li>
+                        </label>
+                    </ul>
+                    <label for="gpu-chipset-dropdown-cb"><span class="extendable">gpu chipset</span></label>             
+                    <input type="checkbox" id="gpu-chipset-dropdown-cb">
+                    <ul class="slide" id="gpu-chipset-dropdown">
+                        {% for elem in chipsets %}
+                        <label>
+                            <li>
+                                <input type="checkbox" value='{{elem.chipset}}' name="chipset" {% if elem.chipset in GETlist.chipset %}checked{% endif %}>{{elem.chipset}}
+                            </li>
+                        </label>
+                        {% endfor %}
+                    </ul>
+                    <label for="manufacturer-dropdown-cb"><span class="extendable">manufacturer</span></label>             
+                    <input type="checkbox" id="manufacturer-dropdown-cb">
+                    <ul class="slide" id="manufacturer-dropdown">
+                        {% for elem in manufacturers %}
+                        <label class="label">
+                            <li>
+                                <input type="checkbox" value='{{elem.manufacturer}}' name="manufacturer" {% if elem.manufacturer in GETlist.manufacturer %}checked{% endif %}>{{elem.manufacturer}}   
+                            </li>
+                        </label>
+                        {% endfor %}
+                    </ul>
+                    <input type="submit" class="btn" value="Validate">
+                </form>
+            </div>
+            <div class="gpu-chart">
+                <div>
+                    {{ GETlist.filter }}
+                </div>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <script>
+            const data = JSON.parse("{{data|escapejs}}");
+            const config = {
+              type: 'line',
+              data: data,
+              options: {
+                plugins: {
+                  legend: {
+                    position: 'left',
+                  }
+                }
+              }
+            };
+            const myChart = new Chart(
+              document.getElementById('myChart'),
+              config
+            );
+        </script>
+                    
+    </body>

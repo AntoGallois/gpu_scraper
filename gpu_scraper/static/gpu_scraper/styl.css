@@ -1,0 +1,133 @@
+body {
+	max-width: 1080px;
+	font-family: 'Poppins', sans-serif;
+	overflow-x: hidden;
+}
+.navbar {
+	background-color: #AB6963;
+	position: sticky;
+	top: 0;
+	height: 80px;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
+	padding-left: 8vw;
+}
+
+.nav-links a {
+	font-size: 0.8rem;
+	padding: 0 16px;
+	color: #F8ECE0;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.nav-links .logo-link {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.nav-links .active-link {
+	font-weight: bold;
+	position: relative;
+}
+
+.active-link::after {
+	position: absolute;
+	bottom: -4px;
+	left: 15%;
+	height: 4px;
+	width: 70%;
+	background-color: #F8ECE0;
+	content: '';
+	border-radius: 4px;
+}
+
+.nav-social {
+	display: flex;
+	align-items: center;
+	padding-right: 8vw;
+}
+
+.nav-social a{
+	padding-left: 20px;
+}
+
+.nav-social .contact-me {
+	background-color: #F8ECE0;
+	padding: 0.8rem  1.3rem;
+	color: #AB6963;
+	border-radius: 14px;
+	text-decoration: none;
+	transition: opacity 0.2s;
+}
+
+.contact-me:hover {
+	opacity: 0.9;
+}
+.body {
+	display: flex;
+	
+}
+.gpu-choices{
+	background-color:cornflowerblue;
+	border-right: solid black;
+	width: 30vw;
+	min-width: 190px;
+	height: calc(100vh - 80px);
+}
+li {
+	cursor: pointer;
+}
+.gpu-chart {
+	width: 100vw;
+	min-width: 770px;
+}
+.chart-container {
+	position: relative;
+	width: 100vw;
+	max-width: 1500px;
+}
+span {
+	padding : 15px;
+	background : #2d2f31; 
+	color : white;
+	font-size : 1.2em;
+	font-variant : small-caps;
+	cursor : pointer;
+	display: block;
+}
+
+.extendable::after {
+	float: right;
+	right: 10%;
+	content: "+";
+}
+.slide {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height .6s ease;
+}
+#gpu-chipset-dropdown-cb {
+	position: absolute; 
+	opacity: 0; 
+	height: 0px;
+}
+#gpu-chipset-dropdown-cb:checked + #gpu-chipset-dropdown {
+	max-height: 300px;
+} 
+#manufacturer-dropdown-cb {
+	position: absolute; 
+	opacity: 0; 
+	height: 0px;
+}
+#manufacturer-dropdown-cb:checked + #manufacturer-dropdown {
+	max-height: 300px;
+} 

@@ -1,0 +1,35 @@
+list useful websites:
+    materiel.net:
+        https://www.materiel.net/carte-graphique/l426/ (page[1-_])
+    rakuten.com
+        https://fr.shopping.rakuten.com/search/carte+graphique#nav=Informatique_composants (&pa=[1-_])
+    amazon.com
+    topachat
+
+11/01
+    -Entrer premiers champs pour GPUList et MarketPlace
+    -Récupérer le prix d'une CG automatiquement et enregistrer sur bdD:
+        https://www.materiel.net/produit/202109220089.html
+        modifier price_getter.py:
+            utiliser le marketplace_id et l'adreese du produit (GPUList)
+            pour récupérer le prix dans le bon champs de la page
+
+12/01
+    -Ajouter autres CG de Materiel.net
+    -Tester les entrées en BdD de plusieurs CG
+    -Automatiser pour amazon
+    -Automatiser le scraping des prix
+
+13/01
+    -Automatiser pour autres sites que Materiel.net
+
+    +continuous+ Rajouter autres cartes
+
+->10/03
+    -Checker les GPUList rtx3080 pour associer lien <=> cg
+    -Ajouter 3060 (ti), 3070 (ti)
+    -Automatiser recup lien amazon/rakuten
+
+->12/03
+    -Determiner les choix possibles de visu (graphe)
+    -Automatiser les calls vers DB dans back

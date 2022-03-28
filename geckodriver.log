@@ -1,0 +1,160 @@
+1642156180112	geckodriver	INFO	Listening on 127.0.0.1:43325
+1642156180612	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50861" "-no-remote" "-profile" "/tmp/rust_mozprofilephfYM1"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1642156182275	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilephfYM1/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50861/devtools/browser/c2ad0b91-e4a4-412d-b010-4c16695c3889
+1642156183055	Marionette	INFO	Listening on port 33979
+1642156183125	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1642156199362	Marionette	INFO	Stopped listening on port 33979
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1642156214887	geckodriver::marionette	ERROR	Failed to close browser connection: Socket not connected (os error 107)
+1642156328443	geckodriver	INFO	Listening on 127.0.0.1:41311
+1642156328446	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "40301" "-no-remote" "-profile" "/tmp/rust_mozprofilee0cSWt"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1642156330048	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+[GFX1-]: Failed to create EGLContext!: 0x3001
+ATTENTION: default value of option mesa_glthread overridden by environment.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilee0cSWt/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:40301/devtools/browser/5709e436-0336-4fe6-bebf-22c4d90181ef
+1642156330988	Marionette	INFO	Listening on port 45201
+1642156331059	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: https://fr.shopping.rakuten.com/rakuten-static-deliver/app/638.0.2/20211029/static/front/js/bin/front_productdescriptionV2.js, line 1: TypeError: document.getElementById(...) is null
+JavaScript error: https://fr.shopping.rakuten.com/offer/buy/7024842951/dual-rx6600xt-o8g-oc-edition-8gb-gddr6-hdmi-2-1-displayport-1.html line 399 > injectedScript, line 3: TypeError: referenceNode is null
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1642156359701	Marionette	INFO	Stopped listening on port 45201
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642156429811	geckodriver	INFO	Listening on 127.0.0.1:49871
+1642156429813	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "49959" "-no-remote" "-profile" "/tmp/rust_mozprofileIy5q2C"
+*** You are running in headless mode.
+1642156431066	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileIy5q2C/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:49959/devtools/browser/b0d1afae-ee6b-4d46-9ef5-8cbf9667f65a
+1642156431967	Marionette	INFO	Listening on port 43123
+1642156432026	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1642156524722	geckodriver	INFO	Listening on 127.0.0.1:38541
+1642156524725	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50819" "-no-remote" "-profile" "/tmp/rust_mozprofileN97TKW"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1642156526369	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileN97TKW/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50819/devtools/browser/4a27ee63-b2c0-43ca-acb3-ab7c23dfd66f
+1642156527390	Marionette	INFO	Listening on port 34841
+1642156527443	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+SourceActor threw an exception: [Exception... "Component returned failure code: 0x80470002 (NS_BASE_STREAM_CLOSED) [nsIInputStream.available]"  nsresult: "0x80470002 (NS_BASE_STREAM_CLOSED)"  location: "JS frame :: resource://devtools/shared/DevToolsUtils.js :: onResponse :: line 567"  data: no]
+Stack: onResponse@resource://devtools/shared/DevToolsUtils.js:567:34
+onStopRequest@resource://gre/modules/NetUtil.jsm:128:18
+Line: 567, column: 0
+console.error: ({})
+JavaScript error: resource://devtools/shared/DevToolsUtils.js, line 567: NS_BASE_STREAM_CLOSED: Component returned failure code: 0x80470002 (NS_BASE_STREAM_CLOSED) [nsIInputStream.available]
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 335))
+InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment: _createTargetActor/<@resource://devtools/server/connectors/js-window-actor/DevToolsFrameChild.jsm:335:12
+newListener@resource://devtools/shared/event-emitter.js:173:27
+_emit@resource://devtools/shared/event-emitter.js:244:34
+emit@resource://devtools/shared/event-emitter.js:190:18
+emit@resource://devtools/shared/event-emitter.js:342:18
+destroy@resource://devtools/server/actors/targets/window-global.js:733:10
+module.exports/proto.destroy@resource://devtools/server/actors/targets/target-actor-mixin.js:242:30
+instantiate@resource://devtools/server/connectors/js-window-actor/DevToolsFrameChild.jsm:242:26
+handleEvent@resource://devtools/server/connectors/js-window-actor/DevToolsFrameChild.jsm:650:12
+
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1642156706452	Marionette	INFO	Stopped listening on port 34841
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642156711579	geckodriver	INFO	Listening on 127.0.0.1:51713
+1642156711582	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "44863" "-no-remote" "-profile" "/tmp/rust_mozprofile5eq1cd"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1642156713198	Marionette	INFO	Marionette enabled
+ATTENTION: default value of option mesa_glthread overridden by environment.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile5eq1cd/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:44863/devtools/browser/b7676a4d-7caf-4727-91ff-0db591a81d38
+1642156713971	Marionette	INFO	Listening on port 39007
+1642156713995	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+mesa: for the --simplifycfg-sink-common option: may only occur zero or one times!
+mesa: for the --global-isel-abort option: may only occur zero or one times!
+mesa: for the --amdgpu-atomic-optimizations option: may only occur zero or one times!
+JavaScript warning: https://js.datadome.co/tags.js, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://static.geetest.com/static/js/fullpage.9.0.8.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1642156790901	Marionette	INFO	Stopped listening on port 39007
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642156794750	geckodriver::marionette	ERROR	Failed to close browser connection: Socket not connected (os error 107)
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
