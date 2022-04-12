@@ -34,8 +34,8 @@ class GPUList(models.Model):
     model = models.ForeignKey(GPUType, on_delete=models.CASCADE)
     marketplace = models.ForeignKey(MarketPlace, on_delete=models.CASCADE)
     buy_link = models.CharField(max_length=300, default='')
+    asin = models.CharField(max_length=50, default='')
     def __str__(self) -> str:
-        # return f'({self.model}, {self.marketplace})'
         return f'{self.model} - {self.marketplace}'
     class Meta:
         ordering=['model', 'marketplace']

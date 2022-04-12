@@ -14,7 +14,7 @@ import csv
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # getMaterielPrices()
-            for gpu_item in GPUList.objects.all():
+            for gpu_item in GPUList.objects.all().exclude(marketplace__mp_name='Amazon.fr'):
                 try:
                     gpu_price = getGPUPrices(gpu_item.marketplace_id, gpu_item.buy_link)
                     new_gpu_price = PriceList(
@@ -29,26 +29,82 @@ class Command(BaseCommand):
                 except urllib3.exceptions.MaxRetryError:
                     self.stderr.write(self.style.ERROR(f'{gpu_item.model}: WRONG LINK'))
 
+            for gpu_price_list in getAmazonPrice():
+                try:
+                    if gpu_price_list.price != 0:
+                        gpu_price_list.save()
+                        self.stdout.write(self.style.SUCCESS(f'{gpu_price_list.gpu.model} at {gpu_price_list.gpu.marketplace} successfully added!'))
+                    else:
+                        self.stderr.write(self.style.ERROR(f'{gpu_price_list.gpu.model}: NO PRICE or Blocked with {gpu_price_list.gpu.marketplace}'))
+                except urllib3.exceptions.MaxRetryError:
+                    self.stderr.write(self.style.ERROR(f'{gpu_price_list.gpu.model}: WRONG LINK'))
+
+
 def getMaterielPrice(web_link:str):
     http = urllib3.PoolManager()
     html = http.request('GET', web_link)
     soup = BeautifulSoup(html.data, 'html.parser')
-    price = soup.find(id='c-product__id').find('span',{'class':'o-product__price'}).text.replace('€', '.').replace(u"\xa0","")
-    return float(price)
+    try:
+        price = soup.find(id='c-product__id').find('span',{'class':'o-product__price'}).text.replace('€', '.').replace(u"\xa0","")
+        return float(price)
+    except Exception:
+        return 0
 
-def getAmazonPrice(web_link:str):
+def getAmazonPrice():
+    type_pages = [
+        ['RTX 3080',1, 'https://www.amazon.fr/s?k=rtx+3080&i=computers&bbn=430340031&rh=n%3A340858031%2Cn%3A427941031%2Cn%3A17414956031%2Cn%3A430340031%2Cp_36%3A10000-&dc&page='],
+        ['RTX 3080 Ti',1, 'https://www.amazon.fr/s?k=rtx+3080+Ti&i=computers&bbn=430340031&rh=n%3A430340031%2Cp_36%3A428411031&dc&page='],
+        ['RTX 3090',1, 'https://www.amazon.fr/s?k=rtx+3090&i=computers&bbn=430340031&rh=n%3A430340031%2Cp_36%3A428411031&dc&page='],
+        ['Radeon RX 6600',1, 'https://www.amazon.fr/s?k=rx+6600&i=computers&bbn=430340031&rh=n%3A430340031%2Cp_36%3A10000-&dc&page='],
+        ['Radeon RX 6600 XT',1, 'https://www.amazon.fr/s?k=rx+6600+xt&rh=p_36%3A10000-&page='],
+        ['Radeon RX 6700',1, 'https://www.amazon.fr/s?k=rx6700&rh=p_36%3A10000-'],
+        ['Radeon RX 6700 XT',1, 'https://www.amazon.fr/s?k=rx6700+xt&rh=p_36%3A10000-&page='],
+        ['Radeon RX 6800',1, 'https://www.amazon.fr/s?k=rx+6800&rh=p_36%3A10000-&page='],
+        ['Radeon RX 6800 XT',1, 'https://www.amazon.fr/s?k=rx6800+xt&rh=p_36%3A10000-&page='],
+        ['Radeon RX 6900 XT',1, 'https://www.amazon.fr/s?k=rx6900+xt&rh=p_36%3A10000-&page='],
+    ]
     headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.115 Safari/537.36"}
-    html = requests.get(web_link, headers=headers)
-    soup = BeautifulSoup(html.content, 'html.parser')
-    price = 0
+    gpu_from_amazon = []
 
-    #fetch price from Amazon.fr website   
-    price_cont = soup.find(id='corePrice_feature_div')
-    # handle possible problem
-    if price_cont is not None:
-        price = price_cont.get_text().strip().split('€')[0].replace(u"\u202f","").replace(",",".")
-    #transform price from string to float
-    return float(price)
+    for gpu_pages in type_pages:
+        price_list = []
+        for i in range(1,gpu_pages[1]+1):
+            web_link = gpu_pages[2]+str(i)
+            html = requests.get(web_link, headers=headers)
+            soup = BeautifulSoup(html.content, 'html.parser')
+            divs = soup.find('div', class_='s-main-slot')
+            if not divs:
+                break
+            divs = divs.select('div[data-asin]')
+            price_list.extend(
+                [
+                    div['data-asin'],
+                    div.select_one('.a-price ')
+                    .get_text('|', strip=True)
+                    .split('|')[0]
+                    .split('€')[0]
+                    .replace(u"\u202f","")
+                    .replace(u"\xa0","")
+                    .replace(",","."),
+                ]
+                for div in divs
+                if div['data-asin']
+                and div.select_one('.a-price ')
+            )
+
+    gpu_from_amazon.extend(
+        PriceList(
+            gpu=gpu_db,
+            price=gpu[1],
+        )
+        for gpu in price_list
+        if (
+            gpu_db := GPUList.objects.filter(
+                asin=gpu[0], model__category__chipset=gpu_pages[0]
+            )
+        )
+    )
+    return gpu_from_amazon
 
 def getRakutenPrice(web_link:str):
     headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.115 Safari/537.36"}

@@ -60,7 +60,7 @@ def getMaterielPrices(web_link:str):
     html = requests.get(web_link, headers=headers)
     soup = BeautifulSoup(html.content, 'html.parser')
     links = soup.find_all('li',{'class':'c-products-list__item'})
-    list = [
+    prod_list = [
         [
             link.find('h2',{'class':'c-product__title'}).get_text().split(' ')[0],
             link.find('h2',{'class':'c-product__title'}).get_text(),
@@ -71,7 +71,7 @@ def getMaterielPrices(web_link:str):
 
     with open('test.csv', 'w') as f:
         writer = csv.writer(f)
-        writer.writerows(list)
+        writer.writerows(prod_list)
 
 
 def main():
