@@ -2,6 +2,7 @@ body {
 	max-width: 1080px;
 	font-family: 'Poppins', sans-serif;
 	overflow-x: hidden;
+	background-color: rgb(104, 233, 205);
 }
 .navbar {
 	background-color: #AB6963;
@@ -74,20 +75,24 @@ body {
 }
 .body {
 	display: flex;
+	height: calc(100vh - 80px);
 	
 }
 .gpu-choices{
-	background-color:cornflowerblue;
 	border-right: solid black;
-	width: 30vw;
+	width: 17vw;
 	min-width: 190px;
-	height: calc(100vh - 80px);
 }
-li {
+
+.gpu-choices ul {
+	padding-bottom: 0.2rem;
+}
+
+.gpu-choices li {
 	cursor: pointer;
+	padding: 0.2rem 0 0 0;
 }
 .gpu-chart {
-	width: 100vw;
 	min-width: 770px;
 }
 .chart-container {
@@ -97,10 +102,11 @@ li {
 }
 span {
 	padding : 15px;
-	background : #2d2f31; 
-	color : white;
+	background : rgb(50, 105, 93);
+	color : rgb(24, 23, 23);
 	font-size : 1.2em;
 	font-variant : small-caps;
+	font-weight: bold;
 	cursor : pointer;
 	display: block;
 }

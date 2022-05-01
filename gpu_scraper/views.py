@@ -8,20 +8,27 @@ from .models import *
 
 import datetime
 
+today = datetime.date.today()
+one_week = datetime.timedelta(weeks=1)
+
+#Add 1 week if wednesday or more
+if today.isoweekday()>=3:
+    today = today + one_week
+
+last_weekday = today - datetime.timedelta(today.isoweekday())
+
+
+
 # Create your views here.
 def index(request):
     template_name = 'gpu_scraper/graph.html'
     range_values = [7,-1]
-    today = datetime.date.today()
     GETlist = request.GET
 
-    data = {
-        'labels': [
-            (today - datetime.timedelta(days=x)).strftime("%d/%m")
-            for x in range(range_values[0], range_values[1], -1)
-        ],
-        'datasets': get_label_list(request.GET.get('filter') or 'chipset', GETlist, today, range_values[0], range_values[1]),
-    }
+    page_filter = GETlist.get('filter')
+    chipset_choice = GETlist.getlist('chipset')
+    manufact_choice = GETlist.getlist('manufacturer')
+    data = display_all_by_chipset(page_filter, chipset_choice, manufact_choice)
 
     context = {
         'chipsets': list(GPUChipset.objects.all().values()),
@@ -31,46 +38,57 @@ def index(request):
     }
     return render(request, template_name, context)
 
-def data_to_display(items_list, first_day, latest_day, today_date, item, item_to_retrieve):
-    gpu_data = []
-    for x in range(first_day, latest_day, -1) :
-        gpu_by_day = [gpu for gpu in items_list if gpu['price_date']==(today_date - datetime.timedelta(days=x))]
-        gpu_by_day = list(map(operator.itemgetter('price'), gpu_by_day))
-        gpu_data.append(sum(gpu_by_day)/len(gpu_by_day) if gpu_by_day else None)
+def display_all_by_chipset(filter, chipset_choice, manufact_choice):
+    choice_opts= {
+        'chipset': {
+            'main_filter': 'gpu__model__category__chipset',
+            'list': list(GPUChipset.objects.all().values()),
+            },
+        'manufacturer': {
+            'main_filter': 'gpu__model__brand__manufacturer',
+            'list': list(GPUManufacturer.objects.all().values()),
+            },
+        'mp_name': {
+            'main_filter': 'gpu__marketplace__mp_name',
+            'list': list(MarketPlace.objects.all().values()),
+            },
+        'additional_opts':{}
+    }
+    if chipset_choice:
+        choice_opts['additional_opts']['gpu__model__category__chipset__in'] = chipset_choice
+    if manufact_choice:
+        choice_opts['additional_opts']['gpu__model__brand__manufacturer__in'] = manufact_choice
 
-    return ({
-            'label':item[item_to_retrieve],
-            'backgroundColor': 'black',
-            'borderColor': 'grey',
-            'data':gpu_data,
-        })
+    choice_list = choice_opts[filter or 'chipset']['list']
 
-def get_label_list(item_to_retrieve, GETList, today, min_date, max_date):
-    data = []
-    if item_to_retrieve == 'chipset':
-        # Retrieve avg price of selected chipsets
-        # or of all chipsets at load or if none selected
-        item_list = (list(GPUChipset.objects.filter(chipset__in=GETList.getlist('chipset')).values()) 
-            if GETList.getlist('chipset')
-            else list(GPUChipset.objects.all().values()))
-    elif item_to_retrieve == 'mp_name':
-        item_list = list(MarketPlace.objects.all().values())
-    elif item_to_retrieve == 'manufacturer':
-        item_list = list(GPUManufacturer.objects.all().values())
+    dataset = []
+    for choice in choice_list:
+        main_filter = {choice_opts[filter or 'chipset']['main_filter']: choice[filter or 'chipset']}
+        chip_prices = []
+        for week_n in range(7,-1,-1):
+            gpu_list = list(PriceList.objects.filter(**main_filter, **choice_opts['additional_opts'], price_date__gt=last_weekday-(one_week*(week_n+1)), price_date__lte=last_weekday-(week_n*one_week)))
+            chip_prices.append(sum(gpu.price for gpu in gpu_list) / len(gpu_list) if gpu_list else None)
+
+        if check_if_not_all_none(chip_prices):
+            dataset.append({
+                'label':choice[filter or 'chipset'],
+                'backgroundColor': 'grey' if 'Radeon' in choice[filter or 'chipset'] else 'black',
+                'borderColor': 'red' if 'Radeon' in choice[filter or 'chipset'] else 'green',
+                'data':chip_prices,
+                'borderWidth':3,
+            })
+
+    return {'labels': create_graph_labels(), 'datasets': dataset,}
+
+def check_if_not_all_none(list_of_elem):
+    """ Check if all elements in list are None """
+    result = False
+    return next((True for elem in list_of_elem if elem is not None), result)
+
+def create_graph_labels():
+    last_saturday = last_weekday - datetime.timedelta(days=1)
+    labels = [(last_saturday - x*one_week).strftime("%d/%m") for x in  range(7,-1,-1)]
+    if today.isoweekday()<7:
+        labels[-1] = (last_saturday-datetime.timedelta(days=3)).strftime("%d/%m")
+    return labels
     
-    for item in item_list:
-        if item_to_retrieve == 'chipset':
-            gpu_list = PriceList.objects.filter(gpu__model__category__chipset=item['chipset'], price_date__gte=(today - datetime.timedelta(days=min_date)))
-        elif item_to_retrieve == 'mp_name':
-            gpu_list = PriceList.objects.filter(gpu__marketplace__mp_name=item['mp_name'], price_date__gte=(today - datetime.timedelta(days=min_date)))
-        elif item_to_retrieve == 'manufacturer':
-            gpu_list = PriceList.objects.filter(gpu__model__brand__manufacturer=item['manufacturer'], price_date__gte=(today - datetime.timedelta(days=min_date)))
-        
-        if GETList.getlist('manufacturer'):
-            gpu_list = gpu_list.filter(gpu__model__brand__manufacturer__in=GETList.getlist('manufacturer'))
-        if GETList.getlist('chipset'):
-            gpu_list = gpu_list.filter(gpu__model__category__chipset__in=GETList.getlist('chipset'))
-        gpu_list = list(gpu_list.values())
-        
-        data.append(data_to_display(gpu_list, min_date, max_date, today, item, item_to_retrieve))
-    return data
